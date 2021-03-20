@@ -2,11 +2,13 @@ from rest_framework import status
 from . import models as userauth_models
 from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 from . import serializers
 from . import permissions as custom_permissions
 
 class UserRegistrationAPI(CreateAPIView):
+    """
+    User SignUp view
+    """
 
     serializer_class = serializers.UserRegistrationSerializer
 
@@ -16,7 +18,10 @@ class UserRegistrationAPI(CreateAPIView):
         serializer.save()
         return Response('User registered successfully', status=status.HTTP_201_CREATED)
 
-class UserLoginAPI(RetrieveAPIView):
+class UserLoginAPI(CreateAPIView):
+    """
+    User Login view
+    """
 
     serializer_class = serializers.UserLoginSerializer
 
@@ -26,11 +31,12 @@ class UserLoginAPI(RetrieveAPIView):
         response = {
             'token' : serializer.data['token'],
             }
-        status_code = status.HTTP_200_OK
-        return Response(response, status=status_code)
+        return Response(response)
 
 class UserProfileAPI(RetrieveAPIView):
-
+    """
+    User Profile view (protected view can only be accesed by authenticated user)
+    """
     permission_classes = [custom_permissions.IsTokenVerified]
     serializer_class = serializers.UserProfileSerializer
 

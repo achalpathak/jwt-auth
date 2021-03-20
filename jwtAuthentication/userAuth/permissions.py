@@ -14,7 +14,7 @@ class IsTokenVerified(BasePermission):
 
 class IsStaff(BasePermission):
     """
-    Allows access to only staff
+    Allows access to only staff users
     """
 
     def has_permission(self, request, view):

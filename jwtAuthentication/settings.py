@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_yasg',
     'jwtAuthentication.userAuth',
 ]
 
@@ -133,7 +134,7 @@ JWT_CONFIGURATION = {
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     
-    'AUTH_HEADER':'Bearer', #case sensitive
+    'AUTH_HEADER':'Bearer',
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     
 }
